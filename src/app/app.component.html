@@ -1,3 +1,4 @@
-<app-counter (counterChange)="onCounterChange($event)" [initialCounter]="initialCounter"></app-counter>
+<button (click)="onAdd1Click()">+</button>
+<button (click)="onMinus1Click()">-</button>
 <p></p>
-{{ counter }}
+<app-counter [initialCounter]="initialCounter"></app-counter>
