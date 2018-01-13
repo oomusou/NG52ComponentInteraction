@@ -1,24 +1,22 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { CounterComponent } from './component/counter/counter.component';
+import { Component } from '@angular/core';
+import { ChangeCounterInterface } from './interface/change-counter.interface';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements AfterViewInit {
-  @ViewChild(CounterComponent) counterComponent: CounterComponent;
+export class AppComponent {
   initialCounter = 3;
 
-  ngAfterViewInit(): void {
-    console.log(this.counterComponent.counter);
+  constructor(private counterService: ChangeCounterInterface) {
   }
 
   onAdd1Click() {
-    this.counterComponent.add1();
+    this.counterService.add1();
   }
 
   onMinus1Click() {
-    this.counterComponent.minus1();
+    this.counterService.minus1();
   }
 }

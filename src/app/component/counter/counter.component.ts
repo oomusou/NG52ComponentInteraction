@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { InitialCounterInterface } from '../../interface/initial-counter.interface';
 
 @Component({
   selector: 'app-counter',
@@ -7,17 +9,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CounterComponent implements OnInit {
   @Input() initialCounter;
-  counter: number;
+  counter$: Observable<number> = this.counterService.counter$;
+
+  constructor(private counterService: InitialCounterInterface) {
+  }
 
   ngOnInit(): void {
-    this.counter = this.initialCounter;
-  }
-
-  add1() {
-    this.counter++;
-  }
-
-  minus1() {
-    this.counter--;
+    this.counterService.setInitialCounter(this.initialCounter);
   }
 }
